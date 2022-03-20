@@ -1,5 +1,5 @@
-# GrabticGlove-Project
-A repository for the GrabticGlove, an advanced haptic motion tracking glove for OpenGloves.
+# VRon-Project
+A repository for the VRonGlove, an advanced haptic motion tracking glove for OpenGloves.
 
 Files for the designs, instructions and code are coming right before the final presentation of my master thesis. Thats becaue I promise in my thesis that non of the work I explain there is published anywhere else already.
 
