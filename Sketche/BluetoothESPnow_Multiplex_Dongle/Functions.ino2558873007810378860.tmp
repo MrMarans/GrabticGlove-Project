@@ -1,0 +1,25 @@
+void GetData() {
+  if (!Serial.available()) return;
+  str = Serial.readString();
+
+  if (str.toInt() != 1) {
+    int e1 = 0;
+    for (int i = 0; i < 5; ++i) { // Mapping
+      //parse durch den empfangenen string und gebe werte an die motoren. unabhängig von größe, durch leerzeichen getrennt.
+      int a1 = e1;  //parse anfang
+      int e1 = str.indexOf(' ', e1 + i); //parse ende
+      int position = map(str.substring(a1, e1).toInt(), Fingers[i].joints[1].Min, Fingers[i].joints[1].Max, 0, 180);  //position als parse zwischen anfang1 und ende 1, string als int, umwandeln in werte von min und max wert zu den 180° rotation des motors
+      Motor[i].val = position;
+
+      esp_err_t result = esp_now_send(broadcastAddressLeft, (uint8_t *) &MotorL[i], sizeof(MotorL[i]));
+
+      if (result == ESP_OK) {
+        Serial.println("Sent with success");
+      }
+      else {
+        Serial.println("Error sending the data");
+      }
+    }
+  }
+
+}
